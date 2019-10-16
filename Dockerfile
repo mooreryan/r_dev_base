@@ -35,8 +35,9 @@ RUN Rscript -e "if (!require('profvis')) install.packages('profvis', Ncpus = ${n
 RUN Rscript -e "if (!require('tictoc')) install.packages('tictoc', Ncpus = ${ncpus})"
 
 # Basic R packages
-RUN Rscript -e "if (!require('devtools')) install.packages('devtools', Ncpus = ${ncpus})"
-RUN Rscript -e "if (!require('Rcpp')) install.packages('Rcpp', Ncpus = ${ncpus})"
+RUN Rscript -e "if (!require('devtools')) install.packages('devtools', Ncpus = ${ncpus}, repos = 'https://cloud.r-project.org/')"
+RUN Rscript -e "if (!require('optparse')) install.packages('optparse', Ncpus = ${ncpus}, repos = 'https://cloud.r-project.org/')"
+RUN Rscript -e "if (!require('Rcpp')) install.packages('Rcpp', Ncpus = ${ncpus}, repos = 'https://cloud.r-project.org/')"
 
 # Bioconductor
 RUN Rscript -e 'if (!requireNamespace("BiocManager", quietly = TRUE)) { install.packages("BiocManager") }; BiocManager::install()'
